@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>CareerConnect Platform</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
 
 <style>
 
@@ -375,6 +377,28 @@ Find Matching Jobs
 <input type="email" id="email" placeholder="Enter Email">
 <input type="password" id="password" placeholder="Enter Password">
 <button onclick="login()">Sign In</button>
+
+<p style="margin-top:10px">
+New user?
+<a href="#" onclick="openSignup()">Create Account</a>
+</p>
+</div>
+
+</div>
+<div id="signupModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close" onclick="closeSignup()">&times;</span>
+
+<h2>Create Account</h2>
+
+<input type="text" id="newUsername" placeholder="Username">
+
+<input type="email" id="newEmail" placeholder="Email">
+
+<input type="password" id="newPassword" placeholder="Password">
+
 <button onclick="signup()">Create Account</button>
 
 </div>
