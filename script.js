@@ -55,7 +55,7 @@ import {
 getAuth,
 createUserWithEmailAndPassword,
 signInWithEmailAndPassword,
-updateProfile
+updateProfile,
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
