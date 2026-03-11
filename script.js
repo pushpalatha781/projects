@@ -1,3 +1,12 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+updateProfile,
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
 function openSignup(){
 document.getElementById("signupModal").style.display="block"
 }
@@ -48,15 +57,6 @@ output+=`
 document.getElementById("jobResults").innerHTML=output
 
 })
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-getAuth,
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword,
-updateProfile,
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
 const firebaseConfig = {
