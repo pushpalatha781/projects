@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CareerConnect Platform</title>
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+/* NAVBAR */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#0077b5;
+padding:15px 40px;
+color:white;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+.nav-links{
+list-style:none;
+display:flex;
+gap:25px;
+align-items:center;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+}
+
+.nav-links a:hover{
+text-decoration:none;
+}
+
+.signin-btn{
+background:white;
+color:#0077b5;
+padding:8px 15px;
+border-radius:5px;
+cursor:pointer;
+border:none;
+font-weight:bold;
+}
+
+/* HOME */
+
+.home{
+display:flex;
+height:90vh;
+}
+
+.home-left{
+width:50%;
+}
+
+.home-left img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.home-right{
+width:50%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:60px;
+background:#f5f5f5;
+}
+
+.home-right h1{
+font-size:36px;
+margin-bottom:20px;
+}
+
+.home-right button{
+width:160px;
+padding:12px;
+background:#0077b5;
+color:white;
+border:none;
+font-size:16px;
+cursor:pointer;
+border-radius:5px;
+}
+
+.home-right button:hover{
+background:#005582;
+}
+
+/* LEARNING */
+
+.learning{
+padding:60px;
+text-align:center;
+}
+
+.learning h2{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.learning-container{
+display:flex;
+justify-content:center;
+gap:30px;
+flex-wrap:wrap;
+}
+
+.learning-card{
+width:250px;
+background:white;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+border-radius:8px;
+overflow:hidden;
+}
+
+.learning-card img{
+width:100%;
+height:150px;
+object-fit:cover;
+}
+
+.learning-card h3{
+padding:15px;
+}
+
+/* LOGIN MODAL */
+
+.modal{
+display:none;
+position:fixed;
+z-index:10;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+}
+
+.modal-content{
+background:white;
+width:350px;
+margin:10% auto;
+padding:30px;
+border-radius:8px;
+text-align:center;
+}
+
+.modal-content input{
+width:90%;
+padding:10px;
+margin:10px 0;
+}
+
+.modal-content button{
+padding:10px;
+width:95%;
+border:none;
+background:#0077b5;
+color:white;
+cursor:pointer;
+margin-top:10px;
+}
+
+.gmail-btn{
+background:#db4437;
+}
+
+.close{
+float:right;
+cursor:pointer;
+font-size:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="logo">CareerConnect</div>
+
+<ul class="nav-links">
+
+<li><a href="#home">Home</a></li>
+<li><a href="#people">People</a></li>
+<li><a href="#learning">Learning</a></li>
+<li><a href="#jobs">Jobs</a></li>
+<li><a href="#network">My Network</a></li>
+
+<li>
+<button class="signin-btn" onclick="openLogin()">Sign In</button>
+</li>
+
+</ul>
+
+</div>
+
+
+<!-- HOME -->
+
+<section id="home" class="home">
+
+<div class="home-left">
+
+<img src="https://static.vecteezy.com/system/resources/previews/009/948/149/large_2x/hand-holding-wooden-blocks-with-text-leadership-empower-people-inspire-people-share-vision-lead-change-photo.jpg">
+
+</div>
+
+<div class="home-right">
+
+<h1>Find jobs, connections, insights and more to grow your career</h1>
+
+<button onclick="openLogin()">Get Started</button>
+
+</div>
+
+</section>
+
+
+<!-- PEOPLE -->
+
+<section id="people" style="padding:60px;text-align:center">
+
+<h2>Connect with Professionals</h2>
+<p>Grow your professional network and collaborate with experts.</p>
+
+</section>
+
+
+<!-- JOBS -->
+<!--
+<section id="jobs" style="padding:60px">
+
+<h2>Upload Resume to Find Jobs</h2>
+
+<form id="resumeForm">
+
+<input type="file" id="resumeFile" accept=".pdf,.docx,.txt,.xlsx" required>
+
+<br><br>
+
+<button type="submit">Upload Resume</button>
+
+</form>
+
+<h3>Recommended Jobs</h3>
+
+<div id="jobResults"></div>
+
+</section>
+-->
+<section id="jobs" style="padding:60px;background:#f8f9fa">
+
+<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap">
+
+<!-- LEFT SIDE TEXT -->
+
+<div style="width:45%">
+
+<h1 style="font-size:36px;color:#333">
+Find the right jobs or internships
+</h1>
+
+<p style="font-size:18px;color:#666">
+Upload your resume and our AI system will recommend the best jobs based on your skills.
+</p>
+
+</div>
+<div style="width:45%;background:white;padding:30px;border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1)">
+
+<h2>Upload Resume</h2>
+
+<form id="resumeForm">
+
+<input type="file" id="resumeFile" accept=".pdf,.docx,.txt,.xlsx" required
+style="width:100%;padding:10px">
+
+<br><br>
+
+<button type="submit"
+style="background:#0077b5;color:white;border:none;padding:12px;width:100%;
+font-size:16px;border-radius:5px;cursor:pointer">
+
+Find Matching Jobs
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<br><br>
+
+<h3>Recommended Jobs</h3>
+
+<div id="jobResults"></div>
+</section>
+
+<!-- LEARNING -->
+
+<section id="learning" class="learning">
+
+<h2>Learn the skills you need to succeed</h2>
+
+<div class="learning-container">
+
+<div class="learning-card">
+<img src="https://images.unsplash.com/photo-1550439062-609e1531270e">
+<h3>Web Development</h3>
+</div>
+
+<div class="learning-card">
+<img src="https://images.unsplash.com/photo-1518770660439-4636190af475">
+<h3>Artificial Intelligence</h3>
+</div>
+
+<div class="learning-card">
+<img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71">
+<h3>Data Science</h3>
+</div>
+
+<div class="learning-card">
+<img src="https://images.unsplash.com/photo-1552664730-d307ca884978">
+<h3>Business Skills</h3>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- NETWORK -->
+
+<section id="network" style="padding:60px;text-align:center">
+
+<h2>My Network</h2>
+<p>Manage your professional connections.</p>
+
+</section>
+
+
+<!-- LOGIN MODAL -->
+
+<div id="loginModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close" onclick="closeLogin()">&times;</span>
+
+<h2>Sign In</h2>
+
+<input type="email" placeholder="Enter Email">
+
+<input type="password" placeholder="Enter Password">
+
+<button>Sign in with Email</button>
+
+<button class="gmail-btn">Sign in with Gmail</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+function openLogin(){
+document.getElementById("loginModal").style.display="block"
+}
+
+function closeLogin(){
+document.getElementById("loginModal").style.display="none"
+}
+
+
+document.getElementById("resumeForm").addEventListener("submit", async function(e){
+
+e.preventDefault()
+
+let file = document.getElementById("resumeFile").files[0]
+
+let formData = new FormData()
+
+formData.append("resume", file)
+
+let response = await fetch("http://127.0.0.1:5000/upload_resume", {
+method: "POST",
+body: formData
+})
+
+let data = await response.json()
+
+let output=""
+
+data.forEach(job=>{
+
+output+=`
+<div style="border:1px solid #ccc;padding:15px;margin:10px">
+<h3>${job.title}</h3>
+<p><b>Company:</b> ${job.company_name}</p>
+<p><b>Location:</b> ${job.location}</p>
+<p><b>Suitability Score:</b> ${job.suitability_score}%</p>
+</div>
+`
+
+})
+
+document.getElementById("jobResults").innerHTML=output
+
+})
+
+</script>
+
+</body>
+</html>
