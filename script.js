@@ -7,18 +7,19 @@ signInWithEmailAndPassword,
 updateProfile
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-function openSignup(){
+window.openSignup = function(){
 document.getElementById("signupModal").style.display="block"
 }
 
-function closeSignup(){
+window.closeSignup = function(){
 document.getElementById("signupModal").style.display="none"
 }
-function openLogin(){
+
+window.openLogin = function(){
 document.getElementById("loginModal").style.display="block"
 }
 
-function closeLogin(){
+window.closeLogin = function(){
 document.getElementById("loginModal").style.display="none"
 }
 
