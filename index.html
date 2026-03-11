@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <title>CareerConnect Platform</title>
 <link rel="stylesheet" href="style.css">
-<script src="script.js"></script>
-
 </head>
 
 <body>
@@ -65,29 +63,6 @@
 
 </section>
 
-
-<!-- JOBS -->
-<!--
-<section id="jobs" style="padding:60px">
-
-<h2>Upload Resume to Find Jobs</h2>
-
-<form id="resumeForm">
-
-<input type="file" id="resumeFile" accept=".pdf,.docx,.txt,.xlsx" required>
-
-<br><br>
-
-<button type="submit">Upload Resume</button>
-
-</form>
-
-<h3>Recommended Jobs</h3>
-
-<div id="jobResults"></div>
-
-</section>
--->
 <section id="jobs" style="padding:60px;background:#f8f9fa">
 
 <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap">
@@ -221,115 +196,6 @@ New user?
 
 </div>
 
-
-<script>
-
-function openLogin(){
-document.getElementById("loginModal").style.display="block"
-}
-
-function closeLogin(){
-document.getElementById("loginModal").style.display="none"
-}
-
-
-document.getElementById("resumeForm").addEventListener("submit", async function(e){
-
-e.preventDefault()
-
-let file = document.getElementById("resumeFile").files[0]
-
-let formData = new FormData()
-
-formData.append("resume", file)
-
-let response = await fetch("http://127.0.0.1:5000/upload_resume", {
-method: "POST",
-body: formData
-})
-
-let data = await response.json()
-
-let output=""
-
-data.forEach(job=>{
-
-output+=`
-<div style="border:1px solid #ccc;padding:15px;margin:10px">
-<h3>${job.title}</h3>
-<p><b>Company:</b> ${job.company_name}</p>
-<p><b>Location:</b> ${job.location}</p>
-<p><b>Suitability Score:</b> ${job.suitability_score}%</p>
-</div>
-`
-
-})
-
-document.getElementById("jobResults").innerHTML=output
-
-})
-
-</script>
-  <script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-getAuth,
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword
-updateProfile  
-}from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-const firebaseConfig = {
-  apiKey: "AIzaSyDQzZMUgdTjKF-sHBxG_lyYi9nUdITgqno",
-  authDomain: "careerconnect-2b1cd.firebaseapp.com",
-  projectId: "careerconnect-2b1cd",
-  storageBucket: "careerconnect-2b1cd.firebasestorage.app",
-  messagingSenderId: "368413879452",
-  appId: "1:368413879452:web:0cf4d492dc318bbb1e5159",
-  measurementId: "G-V2KPELQLL9"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-<!-----
-window.signup = function(){
-
-let email=document.getElementById("email").value
-let password=document.getElementById("password").value
-
-createUserWithEmailAndPassword(auth,email,password)
-
-.then(()=>{
-alert("Account Created Successfully")
-})
-
-.catch(err=>{
-alert(err.message)
-})
-
-}
-
-
-window.login = function(){
-
-let email=document.getElementById("email").value
-let password=document.getElementById("password").value
-
-signInWithEmailAndPassword(auth,email,password)
-
-.then(()=>{
-alert("Login Successful")
-})
-
-.catch(err=>{
-alert(err.message)
-})
-
-}
-
-</script> --->
-
+<script src="script.js"></script>
 </body>
 </html>
