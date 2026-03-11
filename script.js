@@ -1,10 +1,46 @@
-function openSignup(){
-document.getElementById("signupModal").style.display="block"
+function openLogin(){
+document.getElementById("loginModal").style.display="block"
 }
 
-function closeSignup(){
-document.getElementById("signupModal").style.display="none"
+function closeLogin(){
+document.getElementById("loginModal").style.display="none"
 }
+
+document.getElementById("resumeForm").addEventListener("submit", async function(e){
+
+e.preventDefault()
+
+let file = document.getElementById("resumeFile").files[0]
+
+let formData = new FormData()
+
+formData.append("resume", file)
+
+let response = await fetch("http://127.0.0.1:5000/upload_resume", {
+method: "POST",
+body: formData
+})
+
+let data = await response.json()
+
+let output=""
+
+data.forEach(job=>{
+
+output+=`
+<div style="border:1px solid #ccc;padding:15px;margin:10px">
+<h3>${job.title}</h3>
+<p><b>Company:</b> ${job.company_name}</p>
+<p><b>Location:</b> ${job.location}</p>
+<p><b>Suitability Score:</b> ${job.suitability_score}%</p>
+</div>
+`
+
+})
+
+document.getElementById("jobResults").innerHTML=output
+
+})
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
