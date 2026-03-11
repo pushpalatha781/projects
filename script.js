@@ -1,3 +1,10 @@
+function openSignup(){
+document.getElementById("signupModal").style.display="block"
+}
+
+function closeSignup(){
+document.getElementById("signupModal").style.display="none"
+}
 window.login = function(){
 
 let email=document.getElementById("email").value
