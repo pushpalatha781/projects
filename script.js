@@ -35,6 +35,11 @@ let username=document.getElementById("newUsername").value
 let email=document.getElementById("newEmail").value
 let password=document.getElementById("newPassword").value
 
+if(username === "" || email === "" || password === ""){
+alert("Please fill all fields")
+return
+}
+
 createUserWithEmailAndPassword(auth,email,password)
 
 .then((userCredential)=>{
@@ -45,7 +50,7 @@ updateProfile(user,{
 displayName:username
 })
 
-alert("Account created")
+alert("Account created successfully")
 
 closeSignup()
 
