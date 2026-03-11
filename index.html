@@ -372,14 +372,10 @@ Find Matching Jobs
 <span class="close" onclick="closeLogin()">&times;</span>
 
 <h2>Sign In</h2>
-
-<input type="email" placeholder="Enter Email">
-
-<input type="password" placeholder="Enter Password">
-
-<button>Sign in with Email</button>
-
-<button class="gmail-btn">Sign in with Gmail</button>
+<input type="email" id="email" placeholder="Enter Email">
+<input type="password" id="password" placeholder="Enter Password">
+<button onclick="login()">Sign In</button>
+<button onclick="signup()">Create Account</button>
 
 </div>
 
@@ -432,6 +428,65 @@ output+=`
 document.getElementById("jobResults").innerHTML=output
 
 })
+
+</script>
+  <script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyDQzZMUgdTjKF-sHBxG_lyYi9nUdITgqno",
+  authDomain: "careerconnect-2b1cd.firebaseapp.com",
+  projectId: "careerconnect-2b1cd",
+  storageBucket: "careerconnect-2b1cd.firebasestorage.app",
+  messagingSenderId: "368413879452",
+  appId: "1:368413879452:web:0cf4d492dc318bbb1e5159",
+  measurementId: "G-V2KPELQLL9"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+
+window.signup = function(){
+
+let email=document.getElementById("email").value
+let password=document.getElementById("password").value
+
+createUserWithEmailAndPassword(auth,email,password)
+
+.then(()=>{
+alert("Account Created Successfully")
+})
+
+.catch(err=>{
+alert(err.message)
+})
+
+}
+
+
+window.login = function(){
+
+let email=document.getElementById("email").value
+let password=document.getElementById("password").value
+
+signInWithEmailAndPassword(auth,email,password)
+
+.then(()=>{
+alert("Login Successful")
+})
+
+.catch(err=>{
+alert(err.message)
+})
+
+}
 
 </script>
 
