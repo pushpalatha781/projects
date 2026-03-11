@@ -29,3 +29,30 @@ alert(err.message)
 })
 
 }
+window.signup = function(){
+
+let username=document.getElementById("newUsername").value
+let email=document.getElementById("newEmail").value
+let password=document.getElementById("newPassword").value
+
+createUserWithEmailAndPassword(auth,email,password)
+
+.then((userCredential)=>{
+
+let user=userCredential.user
+
+updateProfile(user,{
+displayName:username
+})
+
+alert("Account created")
+
+closeSignup()
+
+})
+
+.catch(err=>{
+alert(err.message)
+})
+
+}
