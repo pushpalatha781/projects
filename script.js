@@ -1,3 +1,10 @@
+function openSignup(){
+document.getElementById("signupModal").style.display="block"
+}
+
+function closeSignup(){
+document.getElementById("signupModal").style.display="none"
+}
 function openLogin(){
 document.getElementById("loginModal").style.display="block"
 }
