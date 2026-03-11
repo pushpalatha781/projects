@@ -33,7 +33,7 @@ let formData = new FormData()
 
 formData.append("resume", file)
 
-let response = await fetch("http://127.0.0.1:5000/upload_resume", {
+let response = await fetch("https://careerconnect-backend-nriz.onrender.com/upload_resume", {
 method: "POST",
 body: formData
 })
