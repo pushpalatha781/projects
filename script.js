@@ -44,7 +44,20 @@ method:"POST",
 body:formData
 })
 
+// check if backend returned error
+if(!response.ok){
+throw new Error("Server returned error: " + response.status)
+}
+
 let data = await response.json()
+
+console.log("Backend response:", data)
+
+if(data.length === 0){
+document.getElementById("jobResults").innerHTML =
+"<p>No matching jobs found.</p>"
+return
+}
 
 let output=""
 
@@ -65,12 +78,14 @@ document.getElementById("jobResults").innerHTML=output
 
 }catch(error){
 
+console.error("Connection error:", error)
+
 alert("Error connecting to server")
-console.log(error)
 
 }
 
 })
+
 
 
 const firebaseConfig = {
