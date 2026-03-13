@@ -61,9 +61,9 @@ return
 
 let output=""
 
-data.forEach(job => {
+data.forEach(job=>{
 
-output += `
+output+=`
 <div class="job-card-horizontal">
 
 <h3>${job.title}</h3>
