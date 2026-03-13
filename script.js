@@ -29,13 +29,19 @@ e.preventDefault()
 
 let file = document.getElementById("resumeFile").files[0]
 
-let formData = new FormData()
+if(!file){
+alert("Please upload a resume first")
+return
+}
 
+let formData = new FormData()
 formData.append("resume", file)
 
-let response = await fetch("https://careerconnect-backend-nriz.onrender.com/upload_resume", {
-method: "POST",
-body: formData
+try{
+
+let response = await fetch("https://careerconnect-backend-nriz.onrender.com/upload_resume",{
+method:"POST",
+body:formData
 })
 
 let data = await response.json()
@@ -56,6 +62,13 @@ output+=`
 })
 
 document.getElementById("jobResults").innerHTML=output
+
+}catch(error){
+
+alert("Error connecting to server")
+console.log(error)
+
+}
 
 })
 
