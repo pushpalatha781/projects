@@ -227,6 +227,54 @@ cursor:pointer;
 background:#005f8e;
 
 }
+/* horizontal scroll container */
+#jobResults{
+
+display:flex;
+gap:20px;
+overflow-x:auto;
+padding:20px 0;
+
+}
+
+/* job card */
+.job-card-horizontal{
+
+min-width:300px;
+background:white;
+border-radius:10px;
+padding:20px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+transition:0.3s;
+
+}
+
+/* hover effect */
+.job-card-horizontal:hover{
+
+transform:translateY(-5px);
+box-shadow:0 6px 15px rgba(0,0,0,0.2);
+
+}
+
+.job-card-horizontal h3{
+
+color:#0077b5;
+margin-bottom:10px;
+
+}
+
+.apply-btn{
+
+margin-top:10px;
+background:#0077b5;
+color:white;
+border:none;
+padding:8px 15px;
+border-radius:5px;
+cursor:pointer;
+
+}
 
 
 
