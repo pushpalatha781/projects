@@ -61,14 +61,21 @@ return
 
 let output=""
 
-data.forEach(job=>{
+data.forEach(job => {
 
-output+=`
-<div style="border:1px solid #ccc;padding:15px;margin:10px">
+output += `
+<div class="job-card">
+
 <h3>${job.title}</h3>
+
 <p><b>Company:</b> ${job.company_name}</p>
+
 <p><b>Location:</b> ${job.location}</p>
+
 <p><b>Suitability Score:</b> ${job.suitability_score}%</p>
+
+<button class="apply-btn">View Details</button>
+
 </div>
 `
 
