@@ -229,6 +229,9 @@ border-radius:5px;
 cursor:pointer;
 
 }
+.high { color:green; font-weight:bold; }
+.medium { color:orange; font-weight:bold; }
+.low { color:red; font-weight:bold; }
 
 
 
