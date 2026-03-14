@@ -60,11 +60,10 @@ return
 }
 
 let output=""
-
-data.forEach(job=>{
+data.forEach((job,index)=>{
 
 output+=`
-<div class="job-card-horizontal">
+<div class="job-card">
 
 <h3>${job.title}</h3>
 
@@ -74,11 +73,20 @@ output+=`
 
 <p><b>Suitability:</b> ${job.suitability_level}</p>
 
-<button class="apply-btn">View Details</button>
+<button class="apply-btn" onclick="toggleDetails(${index})">
+View Details
+</button>
+
+<div class="job-details" id="details-${index}" style="display:none">
+
+<p><b>Missing Skills:</b> ${job.missing_skills.join(", ")}</p>
+
+<p><b>Missing Skills %:</b> ${job.missing_percent}%</p>
+
+</div>
 
 </div>
 `
-
 })
 
 document.getElementById("jobResults").innerHTML=output
@@ -154,5 +162,16 @@ document.getElementById("userDisplay").innerText=user.displayName
 .catch(err=>{
 alert(err.message)
 })
+
+}
+window.toggleDetails=function(index){
+
+let section=document.getElementById(`details-${index}`)
+
+if(section.style.display==="none"){
+section.style.display="block"
+}else{
+section.style.display="none"
+}
 
 }
