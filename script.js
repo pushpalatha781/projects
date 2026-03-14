@@ -72,7 +72,7 @@ output+=`
 
 <p><b>Location:</b> ${job.location}</p>
 
-<p><b>Suitability Score:</b> ${job.suitability_score}%</p>
+<p><b>Suitability:</b> ${job.suitability_level}</p>
 
 <button class="apply-btn">View Details</button>
 
