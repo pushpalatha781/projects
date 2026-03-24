@@ -22,36 +22,7 @@ document.getElementById("loginModal").style.display="block"
 window.closeLogin = function(){
 document.getElementById("loginModal").style.display="none"
 }
-function openCourses(category) {
 
-  const courses = {
-    "Web Development": [
-      "https://www.w3schools.com/",
-      "https://www.freecodecamp.org/",
-      "https://developer.mozilla.org/",
-      "https://www.udemy.com/",
-      "https://www.coursera.org/"
-    ],
-
-    "Artificial Intelligence": [
-      "https://www.coursera.org/learn/machine-learning",
-      "https://www.kaggle.com/learn",
-      "https://developers.google.com/machine-learning",
-      "https://www.udacity.com/",
-      "https://www.edx.org/"
-    ]
-  };
-
-  const section = document.getElementById("courseSection");
-
-  section.innerHTML = `<h2>${category} Courses</h2>`;
-
-  (courses[category] || []).forEach(link => {
-    section.innerHTML += `
-      <p><a href="${link}" target="_blank">${link}</a></p>
-    `;
-  });
-}
 document.getElementById("resumeForm").addEventListener("submit", async function(e){
 
 e.preventDefault()
@@ -203,4 +174,103 @@ section.style.display="block"
 section.style.display="none"
 }
 
+}
+// ================= COURSE DATA =================
+const courseLinks = {
+
+"python": {
+free:[
+"https://freecodecamp.org",
+"https://w3schools.com/python/",
+"https://docs.python.org",
+"https://kaggle.com/learn",
+"https://realpython.com"
+],
+paid:[
+"https://udemy.com",
+"https://coursera.org",
+"https://edx.org",
+"https://pluralsight.com",
+"https://linkedin.com/learning"
+]
+},
+
+"sql": {
+free:[
+"https://w3schools.com/sql/",
+"https://sqltutorial.org/",
+"https://freecodecamp.org",
+"https://mode.com/sql-tutorial/",
+"https://codecademy.com"
+],
+paid:[
+"https://udemy.com",
+"https://coursera.org",
+"https://pluralsight.com",
+"https://udacity.com",
+"https://linkedin.com/learning"
+]
+},
+
+"machine learning": {
+free:[
+"https://developers.google.com/machine-learning",
+"https://kaggle.com/learn",
+"https://fast.ai/",
+"https://edx.org",
+"https://coursera.org"
+],
+paid:[
+"https://udemy.com",
+"https://coursera.org",
+"https://udacity.com",
+"https://pluralsight.com",
+"https://linkedin.com/learning"
+]
+},
+
+"excel": {
+free:[
+"https://excel-easy.com",
+"https://support.microsoft.com/excel",
+"https://youtube.com",
+"https://freecodecamp.org",
+"https://goskills.com"
+],
+paid:[
+"https://udemy.com",
+"https://coursera.org",
+"https://pluralsight.com",
+"https://udacity.com",
+"https://linkedin.com/learning"
+]
+}
+
+};function showCourses(skill){
+
+let data = courseLinks[skill.toLowerCase()]
+
+if(!data){
+alert("No courses found")
+return
+}
+
+let container = document.getElementById("jobResults")
+
+container.innerHTML = `
+<div class="job-card" style="min-width:400px">
+
+<h3>${skill.toUpperCase()} Courses</h3>
+
+<p><b>Free Courses:</b></p>
+${data.free.map(link=>`<a href="${link}" target="_blank">${link}</a>`).join("")}
+
+<p><b>Paid Courses:</b></p>
+${data.paid.map(link=>`<a href="${link}" target="_blank">${link}</a>`).join("")}
+
+<br>
+<button onclick="location.reload()">⬅ Back</button>
+
+</div>
+`
 }
