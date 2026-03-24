@@ -276,6 +276,13 @@ cursor:pointer;
 margin-top:10px;
 
 }
+.job-card a{
+display:block;
+font-size:13px;
+margin:5px 0;
+color:#0077b5;
+text-decoration:none;
+}
 #jobResults{
 scroll-behavior:smooth;
 }
