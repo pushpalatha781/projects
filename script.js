@@ -22,7 +22,36 @@ document.getElementById("loginModal").style.display="block"
 window.closeLogin = function(){
 document.getElementById("loginModal").style.display="none"
 }
+function openCourses(category) {
 
+  const courses = {
+    "Web Development": [
+      "https://www.w3schools.com/",
+      "https://www.freecodecamp.org/",
+      "https://developer.mozilla.org/",
+      "https://www.udemy.com/",
+      "https://www.coursera.org/"
+    ],
+
+    "Artificial Intelligence": [
+      "https://www.coursera.org/learn/machine-learning",
+      "https://www.kaggle.com/learn",
+      "https://developers.google.com/machine-learning",
+      "https://www.udacity.com/",
+      "https://www.edx.org/"
+    ]
+  };
+
+  const section = document.getElementById("courseSection");
+
+  section.innerHTML = `<h2>${category} Courses</h2>`;
+
+  (courses[category] || []).forEach(link => {
+    section.innerHTML += `
+      <p><a href="${link}" target="_blank">${link}</a></p>
+    `;
+  });
+}
 document.getElementById("resumeForm").addEventListener("submit", async function(e){
 
 e.preventDefault()
