@@ -79,7 +79,14 @@ View Details
 
 <div class="job-details" id="details-${index}" style="display:none">
 
-<p><b>Missing Skills:</b> ${job.missing_skills.join(", ")}</p>
+<p><b>Missing Skills:</b></p>
+
+<ul>
+${job.missing_skills.map(skill =>
+`<li onclick="showCourses('${skill}')" style="cursor:pointer;color:blue">
+${skill}
+</li>`).join("")}
+</ul>
 
 <p><b>Missing Skills %:</b> ${job.missing_percent}%</p>
 
