@@ -281,3 +281,82 @@ ${data.paid.map(link=>`<a href="${link}" target="_blank">${link}</a>`).join("")}
 </div>
 `
 }
+const courses = {
+
+"Web Development": {
+  free: [
+    {name:"FreeCodeCamp", url:"https://www.freecodecamp.org"},
+    {name:"W3Schools", url:"https://www.w3schools.com"},
+    {name:"MDN Docs", url:"https://developer.mozilla.org"}
+  ],
+  paid: [
+    {name:"Udemy", url:"https://www.udemy.com"},
+    {name:"Coursera", url:"https://www.coursera.org"}
+  ]
+},
+
+"Python": {
+  free: [
+    {name:"Python.org", url:"https://www.python.org"},
+    {name:"GeeksforGeeks", url:"https://www.geeksforgeeks.org"},
+    {name:"Kaggle", url:"https://www.kaggle.com"}
+  ],
+  paid: [
+    {name:"Udemy", url:"https://www.udemy.com"},
+    {name:"DataCamp", url:"https://www.datacamp.com"}
+  ]
+},
+
+"Machine Learning": {
+  free: [
+    {name:"Kaggle Learn", url:"https://www.kaggle.com/learn"},
+    {name:"Google ML", url:"https://developers.google.com/machine-learning"},
+    {name:"FreeCodeCamp ML", url:"https://www.freecodecamp.org"}
+  ],
+  paid: [
+    {name:"Coursera ML", url:"https://www.coursera.org"},
+    {name:"Udacity", url:"https://www.udacity.com"}
+  ]
+},
+
+"SQL": {
+  free: [
+    {name:"W3Schools SQL", url:"https://www.w3schools.com/sql"},
+    {name:"SQLBolt", url:"https://www.sqlbolt.com"},
+    {name:"Mode SQL", url:"https://mode.com/sql-tutorial"}
+  ],
+  paid: [
+    {name:"Udemy SQL", url:"https://www.udemy.com"},
+    {name:"Coursera SQL", url:"https://www.coursera.org"}
+  ]
+}
+
+};
+
+function openPopup(course) {
+  document.getElementById("popup").style.display = "flex";
+  document.getElementById("courseTitle").innerText = course;
+
+  let linksDiv = document.getElementById("courseLinks");
+  linksDiv.innerHTML = "<h3>Free Courses</h3>";
+
+  courses[course].free.forEach(item => {
+    linksDiv.innerHTML += `
+      <a href="${item.url}" target="_blank" class="free">
+        ${item.name}
+      </a>`;
+  });
+
+  linksDiv.innerHTML += "<h3>Paid Courses</h3>";
+
+  courses[course].paid.forEach(item => {
+    linksDiv.innerHTML += `
+      <a href="${item.url}" target="_blank" class="paid">
+        ${item.name}
+      </a>`;
+  });
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
