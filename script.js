@@ -1,3 +1,4 @@
+// ================= FIREBASE =================
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
@@ -7,6 +8,7 @@ signInWithEmailAndPassword,
 updateProfile
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+// ================= MODALS =================
 window.openSignup = function(){
 document.getElementById("signupModal").style.display="block"
 }
@@ -23,6 +25,7 @@ window.closeLogin = function(){
 document.getElementById("loginModal").style.display="none"
 }
 
+// ================= RESUME UPLOAD =================
 document.getElementById("resumeForm").addEventListener("submit", async function(e){
 
 e.preventDefault()
@@ -44,9 +47,8 @@ method:"POST",
 body:formData
 })
 
-// check if backend returned error
 if(!response.ok){
-throw new Error("Server returned error: " + response.status)
+throw new Error("Server error: " + response.status)
 }
 
 let data = await response.json()
@@ -60,6 +62,7 @@ return
 }
 
 let output=""
+
 data.forEach((job,index)=>{
 
 output+=`
@@ -96,22 +99,20 @@ ${skill}
 `
 })
 
-document.getElementById("jobResults").innerHTML=output
+document.getElementById("jobResults").innerHTML = output
 
 }catch(error){
 
-console.error("Connection error:", error)
-
+console.error(error)
 alert("Error connecting to server")
 
 }
 
 })
 
-
-
+// ================= FIREBASE CONFIG =================
 const firebaseConfig = {
-apiKey: "AIzaSyDQzZMUgdTjKF-sHBxG_lyYi9nUdITgqno",
+apiKey: "AIzaSy...",
 authDomain: "careerconnect-2b1cd.firebaseapp.com",
 projectId: "careerconnect-2b1cd",
 storageBucket: "careerconnect-2b1cd.firebasestorage.app",
@@ -122,7 +123,7 @@ appId: "1:368413879452:web:0cf4d492dc318bbb1e5159"
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-
+// ================= AUTH =================
 window.signup = function(){
 
 let username=document.getElementById("newUsername").value
@@ -130,7 +131,6 @@ let email=document.getElementById("newEmail").value
 let password=document.getElementById("newPassword").value
 
 createUserWithEmailAndPassword(auth,email,password)
-
 .then((userCredential)=>{
 
 let user=userCredential.user
@@ -142,13 +142,11 @@ displayName:username
 alert("Account created")
 
 })
-
 .catch(err=>{
 alert(err.message)
 })
 
 }
-
 
 window.login = function(){
 
@@ -156,7 +154,6 @@ let email=document.getElementById("email").value
 let password=document.getElementById("password").value
 
 signInWithEmailAndPassword(auth,email,password)
-
 .then((userCredential)=>{
 
 let user=userCredential.user
@@ -165,13 +162,14 @@ document.getElementById("loginBtn").style.display="none"
 document.getElementById("userDisplay").innerText=user.displayName
 
 })
-
 .catch(err=>{
 alert(err.message)
 })
 
 }
-window.toggleDetails=function(index){
+
+// ================= TOGGLE =================
+function toggleDetails(index){
 
 let section=document.getElementById(`details-${index}`)
 
@@ -182,6 +180,7 @@ section.style.display="none"
 }
 
 }
+
 // ================= COURSE DATA =================
 const courseLinks = {
 
@@ -253,12 +252,15 @@ paid:[
 ]
 }
 
-};function showCourses(skill){
+};
 
-let data = courseLinks[skill.toLowerCase()]
+// ================= SHOW COURSES =================
+function showCourses(skill){
+
+let data = courseLinks[skill.toLowerCase().trim()]
 
 if(!data){
-alert("No courses found")
+alert(skill + " courses not available yet")
 return
 }
 
@@ -281,82 +283,47 @@ ${data.paid.map(link=>`<a href="${link}" target="_blank">${link}</a>`).join("")}
 </div>
 `
 }
+
+// ================= POPUP COURSES =================
 const courses = {
-
 "Web Development": {
-  free: [
-    {name:"FreeCodeCamp", url:"https://www.freecodecamp.org"},
-    {name:"W3Schools", url:"https://www.w3schools.com"},
-    {name:"MDN Docs", url:"https://developer.mozilla.org"}
-  ],
-  paid: [
-    {name:"Udemy", url:"https://www.udemy.com"},
-    {name:"Coursera", url:"https://www.coursera.org"}
-  ]
-},
-
-"Python": {
-  free: [
-    {name:"Python.org", url:"https://www.python.org"},
-    {name:"GeeksforGeeks", url:"https://www.geeksforgeeks.org"},
-    {name:"Kaggle", url:"https://www.kaggle.com"}
-  ],
-  paid: [
-    {name:"Udemy", url:"https://www.udemy.com"},
-    {name:"DataCamp", url:"https://www.datacamp.com"}
-  ]
-},
-
-"Machine Learning": {
-  free: [
-    {name:"Kaggle Learn", url:"https://www.kaggle.com/learn"},
-    {name:"Google ML", url:"https://developers.google.com/machine-learning"},
-    {name:"FreeCodeCamp ML", url:"https://www.freecodecamp.org"}
-  ],
-  paid: [
-    {name:"Coursera ML", url:"https://www.coursera.org"},
-    {name:"Udacity", url:"https://www.udacity.com"}
-  ]
-},
-
-"SQL": {
-  free: [
-    {name:"W3Schools SQL", url:"https://www.w3schools.com/sql"},
-    {name:"SQLBolt", url:"https://www.sqlbolt.com"},
-    {name:"Mode SQL", url:"https://mode.com/sql-tutorial"}
-  ],
-  paid: [
-    {name:"Udemy SQL", url:"https://www.udemy.com"},
-    {name:"Coursera SQL", url:"https://www.coursera.org"}
-  ]
+free:[
+{name:"FreeCodeCamp", url:"https://www.freecodecamp.org"},
+{name:"W3Schools", url:"https://www.w3schools.com"},
+{name:"MDN Docs", url:"https://developer.mozilla.org"}
+],
+paid:[
+{name:"Udemy", url:"https://www.udemy.com"},
+{name:"Coursera", url:"https://www.coursera.org"}
+]
 }
-
 };
 
-function openPopup(course) {
-  document.getElementById("popup").style.display = "flex";
-  document.getElementById("courseTitle").innerText = course;
+function openPopup(course){
+document.getElementById("popup").style.display="flex"
+document.getElementById("courseTitle").innerText=course
 
-  let linksDiv = document.getElementById("courseLinks");
-  linksDiv.innerHTML = "<h3>Free Courses</h3>";
+let linksDiv=document.getElementById("courseLinks")
+linksDiv.innerHTML="<h3>Free Courses</h3>"
 
-  courses[course].free.forEach(item => {
-    linksDiv.innerHTML += `
-      <a href="${item.url}" target="_blank" class="free">
-        ${item.name}
-      </a>`;
-  });
+courses[course].free.forEach(item=>{
+linksDiv.innerHTML+=`<a href="${item.url}" target="_blank">${item.name}</a>`
+})
 
-  linksDiv.innerHTML += "<h3>Paid Courses</h3>";
+linksDiv.innerHTML+="<h3>Paid Courses</h3>"
 
-  courses[course].paid.forEach(item => {
-    linksDiv.innerHTML += `
-      <a href="${item.url}" target="_blank" class="paid">
-        ${item.name}
-      </a>`;
-  });
+courses[course].paid.forEach(item=>{
+linksDiv.innerHTML+=`<a href="${item.url}" target="_blank">${item.name}</a>`
+})
+
 }
 
-function closePopup() {
-  document.getElementById("popup").style.display = "none";
+function closePopup(){
+document.getElementById("popup").style.display="none"
 }
+
+// ================= IMPORTANT FIX =================
+window.toggleDetails = toggleDetails
+window.showCourses = showCourses
+window.openPopup = openPopup
+window.closePopup = closePopup
